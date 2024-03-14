@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Image from 'react-bootstrap/Image';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
@@ -14,8 +15,7 @@ function Header() {
             <Container fluid>
 
                 <Navbar.Brand href="/">
-                    <img src='https://static.wixstatic.com/media/b1603e_c62e5b2318cf43069ed64183b4bada34~mv2.webp'
-                        width='40px' height='40px' />
+                    <Image src='https://static.wixstatic.com/media/b1603e_c62e5b2318cf43069ed64183b4bada34~mv2.webp' roundedCircle width='50px' height='50px' />
                     <span className='brand-text'> Azula AI</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
@@ -27,14 +27,14 @@ function Header() {
                     >
                         <Nav.Link href="#action1">Listings</Nav.Link>
                         <Nav.Link href="#action2">Inquery</Nav.Link>
-                        <NavDropdown title="Login" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="#action3">Register</NavDropdown.Item>
+                        <NavDropdown title="About Us" id="navbarScrollingDropdown">
+                            <NavDropdown.Item href="#action3">What wo do?</NavDropdown.Item>
                             <NavDropdown.Item href="#action4">
-                                Another action
+                                Contact
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action5">
-                                Something else here
+                                career
                             </NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="#">
