@@ -1,26 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { Container } from 'react-bootstrap'
 import AskAway from './components/AskAway'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
+    <BrowserRouter>
       <Header />
       <main className='py-3'>
         <Container>
-          <AskAway />
+          <Routes>
+            <Route path='/' Component={HomePage} exact />
+          </Routes>
         </Container>
       </main>
       <Footer />
-    </>
+    </BrowserRouter>
   )
+
 }
 
 export default App

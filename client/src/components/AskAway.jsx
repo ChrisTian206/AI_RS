@@ -2,7 +2,12 @@ import React from 'react'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 
 
+
 function AskAway() {
+    const clickHanlder = () => {
+
+    }
+
     return (
         <Card
             border='light'
@@ -11,7 +16,7 @@ function AskAway() {
             <Card.Body>
                 <Card.Img></Card.Img>
                 <Card.Title>Ask away to Azula AI</Card.Title>
-                <Button variant='primary'>I want to ask...</Button>
+                <Button variant='primary' onClick={clickHanlder}>I want to ask...</Button>
             </Card.Body>
         </Card>
     )
