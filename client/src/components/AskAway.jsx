@@ -1,24 +1,29 @@
 import React from 'react'
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-
-
+import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap'
+import VanImageMobile from '../assets/vanMobile.jpg';
+import vanImage from '../assets/van.jpg'
+import { useNavigate } from 'react-router-dom';
 
 function AskAway() {
+    const redirect = useNavigate();
     const clickHanlder = () => {
-
+        redirect('/askaway')
     }
 
     return (
-        <Card
-            border='light'
-            style={{ width: '100%', height: '20rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            className='text-center align-items-center'>
-            <Card.Body>
-                <Card.Img></Card.Img>
-                <Card.Title>Ask away to Azula AI</Card.Title>
-                <Button variant='primary' onClick={clickHanlder}>I want to ask...</Button>
-            </Card.Body>
-        </Card>
+        <>
+            <div style={{ position: 'relative', width: '100%', height: '40rem' }}>
+                <Image src={window.innerWidth > 768 ? vanImage : VanImageMobile} style={{ width: '100%', height: '100%' }} />
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center', width: '100%' }}>
+                    <Card style={{ maxWidth: '500px', margin: '0 auto', backgroundColor: 'rgba(255, 255, 255, 0)' }}>
+                        <Card.Body>
+                            <h2 style={{ color: 'white' }}>Real Estate Questions? Ask Away To Azula AI</h2>
+                            <Button variant='primary' onClick={clickHanlder}>I want to ask...</Button>
+                        </Card.Body>
+                    </Card>
+                </div>
+            </div>
+        </>
     )
 }
 
