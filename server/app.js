@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { json } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 
@@ -11,10 +11,11 @@ mongoose.connect('mongodb://127.0.0.1:27017/airs')
     .catch((err) => { console.log(err) })
 
 app.use(morgan('dev'))
+app.use(express.json())
 
 //** multi-origin communication */
 const corsOptions = {
-    origin: 'http://localhost:3000', //vite: 5173, React: 3000
+    origin: 'http://localhost:5173', //vite: 5173, React: 3000
 };
 app.use(cors(corsOptions));
 

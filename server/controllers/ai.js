@@ -8,9 +8,9 @@ const welcome = (req, res) => {
 }
 
 const talk = async (req, res) => {
-    const assistantTemplate = 'You are a helpful realtor assistant that extracts information in {input} into JSON, only return me the JSON please and no other words. Thank you! '
-    const key = ''
-    console.log(req.body)
+    const assistantTemplate = 'You are a helpful realtor assistant that extracts information in {input} into JSON, return me the JSON only and no other words. Thank you! '
+    const key = 'sk-'
+    // console.log(req.body)
 
     const model = new OpenAI({
         openAIApiKey: key,
@@ -30,16 +30,16 @@ const talk = async (req, res) => {
     })
 
     const ret = await chain.call({
-        input: "I want to ask how many residential properties are in Vancouver, BC that has 5+ bedroom and is valued more than CAD 1,000,000"
+        input: req.body.question
     })
 
     // Remove unnecessary line breaks and leading/trailing whitespace
     const formattedText = ret.text.trim();
 
     // Remove the leading '\n' and '+' characters
-    //const cleanedText = formattedText.replace(/^n\+/, '');
-    console.log(formattedText)
-    res.json(formattedText)
+    const cleanedText = formattedText.replace(/^n\+/, '');
+    console.log(cleanedText)
+    res.json(cleanedText)
 }
 
 export default {
