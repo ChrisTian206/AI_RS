@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@langchain/openai": "^0.0.23",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "langchain": "^0.1.29",
+    "mongoose": "^8.2.3",
+    "morgan": "^1.10.0"
+  }
+}
