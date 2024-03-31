@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Form, InputGroup, Container, Row, Col, Button } from 'react-bootstrap'
 import axios from 'axios';
+import Listing from '../components/Listing';
 
 function AzulaaiPage() {
     const [res, setRes] = useState('');
