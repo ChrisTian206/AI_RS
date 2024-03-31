@@ -8,8 +8,8 @@ const welcome = (req, res) => {
 }
 
 const talk = async (req, res) => {
-    const assistantTemplate = 'You are a helpful realtor assistant that extracts information in {input} into JSON, return me the JSON only and no other words. Thank you! '
-    const key = 'sk-'
+    const assistantTemplate = 'You are a helpful realtor assistant that extracts information from {input} into JSON to help me generate urls with different kinds of params in it, then access listings from the Repliers website. Inside of the input, help me extract the following field: String city,String class: [condo, residential, commercial],Int maxBeds,Int maxKitchens,Int minBed,Int minKitchens,Int minBaths,Int maxSqft, Int minSqft,String zip,Int maxPrice, Please only return me the JSON and no other words. Thank you!'
+    const key = ''
     // console.log(req.body)
 
     const model = new OpenAI({
