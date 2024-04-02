@@ -32,22 +32,25 @@ function AzulaaiPage() {
                                 value={question}
                                 onChange={(e) => { setQuestion(e.target.value) }} />
                         </InputGroup>
+                        <Col >
+                            <Button className='primary  mt-3' onClick={submitHandler}>submit</Button>
+                        </Col>
+
                     </Row>
 
                     <Row>
                         <div className='mt-3' style={{ textAlign: 'center' }}>
-                            {res ?
+                            {res.listings ?
                                 <div>
                                     <h2>Azula AI:</h2>
-                                    <p>{res}</p>
+
+                                    {res.listings.map((property, index) => (
+                                        <p key={index}>{property.mlsNumber}, this one is located in {property.address.streetNumber} {property.address.streetName} {property.address.streetSuffix} at price: ${property.originalPrice}</p>
+                                    ))}
                                 </div> : ''}
                         </div>
                     </Row>
-                    <Row >
-                        <Col >
-                            <Button className='primary  mt-3' onClick={submitHandler}>submit</Button>
-                        </Col>
-                    </Row>
+
                 </Form>
             </Container>
 
