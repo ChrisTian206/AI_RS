@@ -7,6 +7,7 @@ import AzulaaiPage from './pages/AzulaaiPage'
 import ListingPage from './pages/ListingPage'
 import AboutUsPage from './pages/AboutUsPage'
 import InqueryPage from './pages/InqueryPage'
+import SummarizeStrataPage from './pages/SummarizeStrataPage'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
@@ -23,6 +24,7 @@ function App() {
           <Route path='/listing' Component={ListingPage} />
           <Route path='/about-us' Component={AboutUsPage} />
           <Route path='/inquery' Component={InqueryPage} />
+          <Route path='/strata' Component={SummarizeStrataPage} />
         </Routes>
       </main>
       <Footer />
