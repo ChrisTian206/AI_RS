@@ -39,7 +39,7 @@ const talk = async (req, res) => {
 
     // Remove the leading '\n' and '+' characters
     const cleanedText = formattedText.replace(/^n\+/, '');
-    console.log(cleanedText)
+    console.log("OpenAI ret: ", cleanedText)
     //res.json(cleanedText)
 
     const options = {
@@ -60,12 +60,11 @@ const talk = async (req, res) => {
                 res.json(response.data)
             })
             .catch(function (error) {
-                console.error(error);
+                res.json(error)
             });
     }
+
     funCall()
-
-
 }
 
 export default {
