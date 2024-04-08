@@ -27,6 +27,7 @@ function Header() {
                     >
                         <Nav.Link href="/listing">Listings</Nav.Link>
                         <Nav.Link href="/inquery">Inquery</Nav.Link>
+                        <Nav.Link href="/Strata">Summarize Strata</Nav.Link>
                         <NavDropdown title="About Us" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="/about-us">What wo do?</NavDropdown.Item>
                             <NavDropdown.Item href="/inquery">
