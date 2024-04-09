@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react'
 import { Button, Card, Carousel } from 'react-bootstrap'
 import House1 from '../assets/houses/house1.jpeg'
 import House2 from '../assets/houses/house2.jpeg'
@@ -13,16 +13,19 @@ function DisplayProperty({ property }) {
     const images = [House1, House2, House3, House4, House5, House6, House7, House8]
     const num = Math.floor(Math.random() * 8);
 
+    const [img, setImg] = useState(images[num])
+
+
     return (
         <div>
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={images[num]} />
+                <Card.Img variant="top" src={img} />
                 <Card.Body>
                     <Card.Title>
                         {property.address.streetNumber} {property.address.streetName} {property.address.streetSuffix}
                     </Card.Title>
                     <Card.Text>
-                        {property.mlsNumber}
+                        {property.address.city},{property.address.state}
                     </Card.Text>
                     <Card.Text>
                         $CAD {property.originalPrice}
