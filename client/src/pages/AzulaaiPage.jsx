@@ -52,19 +52,21 @@ function AzulaaiPage() {
                             <Spinner animation="border" role="status">
                                 <span className="visually-hidden">Loading...</span>
                             </Spinner>
-                            : res.listings ?
-                                <div>
-                                    <h2>Azula AI:</h2>
-                                    <Container>
-                                        <Row>
-                                            {res.listings.map((property, index) => (
-                                                <Col key={index} className='m-2 d-flex justify-content-center'>
-                                                    <DisplayProperty property={property} />
-                                                </Col>
-                                            ))}
-                                        </Row>
-                                    </Container>
-                                </div> : ''
+                            : res.error ? "Input Invalid" :
+                                res.count === 0 ? 'There is no matched properties' :
+                                    res.listings ?
+                                        <div>
+                                            <h2>Azula AI:</h2>
+                                            <Container>
+                                                <Row>
+                                                    {res.listings.map((property, index) => (
+                                                        <Col key={index} className='m-2 d-flex justify-content-center'>
+                                                            <DisplayProperty property={property} />
+                                                        </Col>
+                                                    ))}
+                                                </Row>
+                                            </Container>
+                                        </div> : 'There is no matched properties'
                         }
                     </div>
                 </Row>
