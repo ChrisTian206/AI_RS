@@ -36,10 +36,8 @@ function Header() {
                             <LinkContainer to='/strata'><Nav.Link >Summarize Strata</Nav.Link></LinkContainer>
 
                             <NavDropdown title="About Us" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="/about-us">What wo do?</NavDropdown.Item>
-                                <NavDropdown.Item href="/inquery">
-                                    Contact
-                                </NavDropdown.Item>
+                                <LinkContainer to='/about-us'><NavDropdown.Item>What wo do?</NavDropdown.Item></LinkContainer>
+                                <LinkContainer to='/inquery'><NavDropdown.Item>Contact</NavDropdown.Item></LinkContainer>
                                 {/* <NavDropdown.Divider /> */}
                                 {/* <NavDropdown.Item href="/career">
                                 career
