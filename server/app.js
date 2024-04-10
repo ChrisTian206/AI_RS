@@ -17,7 +17,7 @@ app.use(express.json())
 
 //** multi-origin communication */
 const corsOptions = {
-    origin: ['https://ai-rs-git-main-chris-projects-aa6ff9fb.vercel.app/',
+    origin: ['https://ai-rs-git-main-chris-projects-aa6ff9fb.vercel.app',
         'http://localhost:5173'] //For Dev: vite: 5173, React: 3000
 };
 app.use(cors(corsOptions));
