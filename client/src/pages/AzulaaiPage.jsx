@@ -28,13 +28,12 @@ function AzulaaiPage() {
         <>
             <h1 style={{ textAlign: 'center' }}>How can I help you?</h1>
             <Container>
-                <p style={{ color: 'orange' }}>*Temporary solution, will implement a chat box below</p>
                 <Form onSubmit={submitHandler}>
-                    <InputGroup>
-                        <InputGroup.Text style={{ height: '10rem' }}>Talk to Azula AI</InputGroup.Text>
+                    <InputGroup style={{ border: 'solid black 2px', borderRadius: '20px' }}>
                         <Form.Control
                             as="textarea"
                             aria-label="With textarea"
+                            style={{ background: 'white', borderRadius: '20px' }}
                             value={question}
                             onChange={(e) => { setQuestion(e.target.value) }} />
                     </InputGroup>
@@ -53,20 +52,20 @@ function AzulaaiPage() {
                                 <span className="visually-hidden">Loading...</span>
                             </Spinner>
                             : res.error ? "Input Invalid" :
-                                res.count === 0 ? 'There is no matched properties' :
+                                res.count === 0 ? 'There is 0 matched properties' :
                                     res.listings ?
                                         <div>
                                             <h2>Azula AI:</h2>
                                             <Container>
                                                 <Row>
-                                                    {res.listings.map((property, index) => (
-                                                        <Col key={index} className='m-2 d-flex justify-content-center'>
+                                                    {res.listings.map((property) => (
+                                                        <Col key={property.mlsNumber} className='m-2 d-flex justify-content-center'>
                                                             <DisplayProperty property={property} />
                                                         </Col>
                                                     ))}
                                                 </Row>
                                             </Container>
-                                        </div> : 'There is no matched properties'
+                                        </div> : ''
                         }
                     </div>
                 </Row>

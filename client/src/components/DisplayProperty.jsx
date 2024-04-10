@@ -30,7 +30,7 @@ function DisplayProperty({ property }) {
                     <Card.Text>
                         $CAD {property.originalPrice}
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="primary">View Details</Button>
                 </Card.Body>
             </Card>
         </div>

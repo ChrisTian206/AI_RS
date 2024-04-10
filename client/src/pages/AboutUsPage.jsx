@@ -6,7 +6,7 @@ function AboutUsPage() {
         <>
             <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Azula AI</h1>
 
-            <Container className='p-5' style={{ backgroundColor: 'black' }}>
+            <Container className='p-5' style={{ backgroundColor: '#343a40' }}>
                 <Row>
                     <h1 style={{ color: 'white', textAlign: 'center' }}>Innovative Real Estate Solutions</h1>
                     <p style={{ color: 'white', textAlign: 'center' }} >
@@ -24,9 +24,31 @@ function AboutUsPage() {
                 </Row>
             </Container >
 
-            <Container className='p-5'>
+            <Container className='p-5' style={{ backgroundColor: '#343a40' }} >
                 <Row>
-                    hold on
+                    <h1 style={{ color: 'white', textAlign: 'center' }}>Team</h1>
+                    <Col md={8} style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                        Member 1
+                    </Col>
+                    <Col md={4} style={{ color: 'white', textAlign: 'center' }}>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur in reprehenderit doloribus repellat, rem quae doloremque! Sit, quo beatae quos expedita quod, quas sequi molestiae molestias officiis veniam ex!
+                    </Col>
+                </Row>
+                <Row className='mt-4'>
+                    <Col md={8} style={{ color: 'white', textAlign: 'center' }}>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur in reprehenderit doloribus repellat, rem quae doloremque! Sit, quo beatae quos expedita quod, quas sequi molestiae molestias officiis veniam ex!
+                    </Col>
+                    <Col md={4} style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                        Member 2
+                    </Col>
+                </Row>
+                <Row className='mt-4'>
+                    <Col md={8} style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                        Member 3
+                    </Col>
+                    <Col md={4} style={{ color: 'white', textAlign: 'center' }}>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur in reprehenderit doloribus repellat, rem quae doloremque! Sit, quo beatae quos expedita quod, quas sequi molestiae molestias officiis veniam ex!
+                    </Col>
                 </Row>
             </Container >
         </>
