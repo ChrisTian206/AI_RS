@@ -1,10 +1,12 @@
 import express, { json } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import dotenv from 'dotenv'
 
 //Init Setup
 import mongoose from 'mongoose';
 const app = express();
+dotenv.config()
 
 mongoose.connect('mongodb://127.0.0.1:27017/airs')
     .then(() => { console.log("database is connected!!") })

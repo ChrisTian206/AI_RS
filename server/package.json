@@ -15,6 +15,7 @@
     "@langchain/openai": "^0.0.23",
     "axios": "^1.6.8",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "is-url": "^1.2.4",
     "langchain": "^0.1.29",
