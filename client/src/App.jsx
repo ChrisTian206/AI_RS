@@ -13,7 +13,7 @@ import HomePage from './pages/HomePage'
 function App() {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='https://ai-5djc5q99u-chris-projects-aa6ff9fb.vercel.app/'>
       <Header />
       <main className='py-3'>
         <Routes>
