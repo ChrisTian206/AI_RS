@@ -58,11 +58,11 @@ const talk = async (req, res) => {
             await axios
                 .request(options)
                 .then(function (response) {
-                    console.log(response.data)
+                    //console.log(response.data)
                     res.json(response.data)
                 })
                 .catch(function (error) {
-                    console.log(error)
+                    //console.log(error)
                     res.json(error)
                 });
         } else {
