@@ -1,8 +1,6 @@
 import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import { Container } from 'react-bootstrap'
-import AskAway from './components/AskAway'
 import AzulaaiPage from './pages/AzulaaiPage'
 import ListingPage from './pages/ListingPage'
 import AboutUsPage from './pages/AboutUsPage'
