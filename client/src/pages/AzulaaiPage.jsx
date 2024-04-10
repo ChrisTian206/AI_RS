@@ -5,7 +5,9 @@ import Listing from '../components/Listing';
 import DisplayProperty from '../components/DisplayProperty';
 import dotenv from 'dotenv'
 
-dotenv.config();
+// dotenv.config();
+"https://ai-rs.onrender.com/api/ai/talk/"
+"http://localhost:8000/api/ai/talk"
 
 function AzulaaiPage() {
     const [res, setRes] = useState('')
@@ -16,7 +18,7 @@ function AzulaaiPage() {
         console.log("question: ", question)
         setLoad(true)
 
-        const data = await axios.post(`${process.env.BackEnd_URL}/ai/talk`, { question })
+        const data = await axios.post(`https://ai-rs.onrender.com/api/ai/talk`, { question })
             .then((res) => {
                 setLoad(false)
                 return res.data
