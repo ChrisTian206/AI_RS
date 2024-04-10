@@ -3,6 +3,9 @@ import { Form, InputGroup, Container, Row, Col, Button, Spinner } from 'react-bo
 import axios from 'axios';
 import Listing from '../components/Listing';
 import DisplayProperty from '../components/DisplayProperty';
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 function AzulaaiPage() {
     const [res, setRes] = useState('')
@@ -13,7 +16,7 @@ function AzulaaiPage() {
         console.log("question: ", question)
         setLoad(true)
 
-        const data = await axios.post('http://localhost:8000/api/ai/talk', { question })
+        const data = await axios.post(`${process.env.BackEnd_URL}/ai/talk`, { question })
             .then((res) => {
                 setLoad(false)
                 return res.data
