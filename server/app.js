@@ -19,7 +19,8 @@ app.use(express.json())
 const corsOptions = {
     origin: ['*'] //For Dev: vite: 5173, React: 3000
 };
-app.use(cors(corsOptions));
+
+app.use(cors());
 
 //Routing
 import aiRoute from './routes/ai.js';
