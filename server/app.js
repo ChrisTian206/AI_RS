@@ -1,5 +1,5 @@
 import express, { json } from 'express';
-// import morgan from 'morgan';
+import morgan from 'morgan';
 import cors from 'cors';
 import dotenv from 'dotenv'
 
@@ -12,7 +12,7 @@ dotenv.config()
 //     .then(() => { console.log("database is connected!!") })
 //     .catch((err) => { console.log(err) })
 
-// app.use(morgan('dev'))
+app.use(morgan('dev'))
 app.use(express.json())
 
 //** multi-origin communication */
@@ -23,8 +23,10 @@ const corsOptions = {
 app.use(cors());
 
 //Routing
-import aiRoute from './routes/ai.js';
-app.use('/api/ai', aiRoute)
+import aiRoutes from './routes/ai.js';
+import listingRoutes from './routes/listing.js'
+app.use('/api/ai', aiRoutes)
+app.use('/api/listings', listingRoutes)
 
 
 app.listen(8000, () => {
