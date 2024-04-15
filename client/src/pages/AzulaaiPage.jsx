@@ -3,9 +3,7 @@ import { Form, InputGroup, Container, Row, Col, Button, Spinner } from 'react-bo
 import axios from 'axios';
 import Listing from '../components/Listing';
 import DisplayProperty from '../components/DisplayProperty';
-import dotenv from 'dotenv'
 
-// dotenv.config();
 "https://ai-rs.onrender.com/api/ai/talk/"
 "http://localhost:8000/api/ai/talk"
 
@@ -18,7 +16,7 @@ function AzulaaiPage() {
         console.log("question: ", question)
         setLoad(true)
 
-        const data = await axios.post(`https://ai-rs.onrender.com/api/ai/talk`, { question })
+        const data = await axios.post(`/ai/talk`, { question })
             .then((res) => {
                 setLoad(false)
                 return res.data
