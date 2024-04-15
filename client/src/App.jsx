@@ -15,7 +15,8 @@ import HomePage from './pages/HomePage'
 function App() {
 
   //"http://localhost:8000/api"
-  axios.defaults.baseURL = 'https://ai-rs.onrender.com/api'
+  //https://ai-rs.onrender.com/api
+  axios.defaults.baseURL = "https://ai-rs.onrender.com/api"
 
   return (
     <BrowserRouter>
