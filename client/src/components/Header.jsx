@@ -16,7 +16,6 @@ function Header() {
         <header>
             <Navbar expand="lg" className="bg-body-tertiary" sticky='top'>
                 <Container fluid>
-
                     <LinkContainer to='/'>
                         <Navbar.Brand>
                             <Image src='https://static.wixstatic.com/media/b1603e_c62e5b2318cf43069ed64183b4bada34~mv2.webp' roundedCircle width='50px' height='50px' />
@@ -24,12 +23,11 @@ function Header() {
                         </Navbar.Brand>
                     </LinkContainer>
 
-                    <Navbar.Toggle aria-controls="navbarScroll" />
-                    <Navbar.Collapse id="navbarScroll">
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
                         <Nav
                             className="me-auto my-2 my-lg-0"
-                            style={{ maxHeight: '100px' }}
-                            navbarScroll
+                        // style={{ maxHeight: '100px' }}
                         >
                             {/* <LinkContainer to='/listing'><Nav.Link >Listings</Nav.Link></LinkContainer> */}
                             <LinkContainer to='/inquery'><Nav.Link >Inquery</Nav.Link></LinkContainer>
