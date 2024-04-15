@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { React, useEffect, useState } from 'react'
-import { Container, Row, Col, Carousel, Image, Spinner, ListGroup, Placeholder, ListGroupItem } from 'react-bootstrap'
+import { Container, Row, Col, Carousel, Image, Spinner, ListGroup, Placeholder, ListGroupItem, Button, Modal } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
+import AgentCard from '../components/AgentCard'
 
 import House1 from '../assets/houses/house1.jpeg'
 import House2 from '../assets/houses/house2.jpeg'
@@ -20,6 +21,9 @@ function PropertyPage() {
     // console.log('mls received from FE: ', mlsNumber)
     const [property, setProperty] = useState('')
     const [loading, setLoading] = useState(true)
+    const [show, setShow] = useState(false)
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         const fetchProperty = async () => {
@@ -42,7 +46,7 @@ function PropertyPage() {
                             <div>
                                 <h2>{property.address.streetNumber} {property.address.streetName} {property.address.streetSuffix}, {property.address.city}</h2>
                                 <p> mlsNumber:{property.mlsNumber} Status:<span style={{ border: 'solid green 3px', borderRadius: '30px', color: 'white', background: 'green', textAlign: 'center', width: '50px' }}>{property.type}</span></p>
-                                <div className="shadow p-3 rounded mb-3" style={{ height: '25rem', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <div className="shadow p-3 rounded mb-3" style={{ height: '25rem', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#e9ecef' }}>
                                     <Carousel slide={false} style={{ textAlign: 'center', width: '100%' }}>
                                         {images.map((image, index) => (
                                             <Carousel.Item key={index}>
@@ -73,10 +77,17 @@ function PropertyPage() {
                                 <ListGroup className='mt-5'>
                                     <ListGroup.Item>{Object.keys(property.details.bathrooms).length} Baths / {Object.keys(property.rooms).length} Beds</ListGroup.Item>
                                     <ListGroup.Item>Listed on: {property.listDate}</ListGroup.Item>
-                                    <ListGroup.Item>Built on: {property.details.yearBuilt}</ListGroup.Item>
-                                    <ListGroup.Item>{property.details.description}</ListGroup.Item>
+                                    <ListGroup.Item>Built in: {property.details.yearBuilt}</ListGroup.Item>
                                     <ListGroup.Item>Condition: {property.lastStatus}</ListGroup.Item>
+                                    <ListGroup.Item>{property.details.sqft} Sqft</ListGroup.Item>
+                                    <ListGroup.Item style={{ textAlign: 'center' }}> <Button variant="outline-info" onClick={handleShow}>Full Description</Button></ListGroup.Item>
                                 </ListGroup>
+                                <Modal show={show} onHide={handleClose}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Property Details</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>{property.details.description}</Modal.Body>
+                                </Modal>
                             </div>
                         }
 
@@ -84,7 +95,18 @@ function PropertyPage() {
 
                     <Col md={3}>
                         <h3>Agent Info</h3>
+                        {loading ?
+                            <Spinner animation="border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner> :
+                            <AgentCard agents={property.agents} />
+                        }
+
                     </Col>
+                </Row>
+
+                <Row>
+
                 </Row>
             </Container >
         </>
