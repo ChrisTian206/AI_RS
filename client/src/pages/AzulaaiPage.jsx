@@ -38,7 +38,7 @@ function AzulaaiPage() {
                     </InputGroup>
 
 
-                    <div className="d-flex justify-content-center mt-2">
+                    <div className="d-flex justify-content-center mt-2" >
                         <Button onClick={submitHandler}>Submit</Button>
                     </div>
 
@@ -64,7 +64,7 @@ function AzulaaiPage() {
                                                     ))}
                                                 </Row>
                                             </Container>
-                                        </div> : ''
+                                        </div> : <div style={{ height: '25rem' }}></div>
                         }
                     </div>
                 </Row>

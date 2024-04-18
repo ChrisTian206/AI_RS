@@ -18,7 +18,10 @@ function AskAway() {
                     <Card style={{ maxWidth: '500px', margin: '0 auto', backgroundColor: 'rgba(255, 255, 255, 0)' }}>
                         <Card.Body>
                             <h2 style={{ color: 'white' }}>Real Estate Questions? Ask Away To Azula AI</h2>
-                            <Button variant='primary' onClick={clickHanlder}>I want to ask...</Button>
+                            <Button variant='primary' onClick={clickHanlder}
+                                style={{ border: 'solid white 4px', borderRadius: '20px' }}>
+                                I want to ask...
+                            </Button>
                         </Card.Body>
                     </Card>
                 </div>
