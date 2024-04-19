@@ -1,6 +1,11 @@
 import { OpenAI } from '@langchain/openai'
 import { PromptTemplate } from "@langchain/core/prompts"
 import { LLMChain } from 'langchain/chains'
+import { ChatOpenAI } from '@langchain/openai'
+import { ChatPromptTemplate } from '@langchain/core/prompts'
+import { createStuffDocumentsChain } from 'langchain/chains/combine_documents'
+
+
 import isUrl from 'is-url'
 import axios from 'axios'
 
@@ -77,7 +82,12 @@ const talk = async (req, res) => {
     funCall()
 }
 
+const anwserQuestions = async (req, res) => {
+
+}
+
 export default {
     welcome,
-    talk
+    talk,
+    anwserQuestions,
 }
