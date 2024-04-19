@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, InputGroup, Container, Row, Col, Button, Spinner } from 'react-bootstrap'
 import axios from 'axios';
 import DisplayProperty from '../components/DisplayProperty';
@@ -7,6 +7,14 @@ function AzulaaiPage() {
     const [res, setRes] = useState('')
     const [question, setQuestion] = useState('')
     const [load, setLoad] = useState(false)
+
+    useEffect(() => {
+        const listings = localStorage.getItem('listings')
+        //console.log('getting localStorage: ', JSON.parse(listings))
+        if (listings) {
+            setRes(JSON.parse(listings))
+        }
+    }, [])
 
     const submitHandler = async () => {
         console.log("question: ", question)
@@ -18,6 +26,7 @@ function AzulaaiPage() {
                 return res.data
             })
         setRes(data)
+        localStorage.setItem('listings', JSON.stringify(data))
 
         //rookie mistake!!! console.log a status right after setState won't work!!
         // console.log("response from 8000 says: ", res)

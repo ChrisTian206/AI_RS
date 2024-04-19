@@ -24,3 +24,4 @@ export const getProperty = async (req, res) => {
         });
 }
 
+

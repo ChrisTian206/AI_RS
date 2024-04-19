@@ -35,11 +35,11 @@ function AboutUsPage() {
                     </Col>
                 </Row>
                 <Row className='mt-4'>
-                    <Col md={8} style={{ color: 'white', textAlign: 'center' }}>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur in reprehenderit doloribus repellat, rem quae doloremque! Sit, quo beatae quos expedita quod, quas sequi molestiae molestias officiis veniam ex!
-                    </Col>
                     <Col md={4} style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
                         Member 2
+                    </Col>
+                    <Col md={8} style={{ color: 'white', textAlign: 'center' }}>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur in reprehenderit doloribus repellat, rem quae doloremque! Sit, quo beatae quos expedita quod, quas sequi molestiae molestias officiis veniam ex!
                     </Col>
                 </Row>
                 <Row className='mt-4'>
