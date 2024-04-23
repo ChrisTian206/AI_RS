@@ -60,6 +60,7 @@ function PropertyPage() {
                 console.log(res.data)
                 setAiLoading(false)
                 setAnswer(res.data.answer)
+                setQuestion('')
             })
             .catch(error => {
                 console.log(error)
