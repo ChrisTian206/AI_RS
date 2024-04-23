@@ -25,7 +25,6 @@ function App() {
         <Routes>
           <Route path='/' Component={HomePage} exact />
           <Route path='/askaway' Component={AzulaaiPage} />
-          {/* <Route path='/listing' Component={ListingPage} /> */}
           <Route path='/about-us' Component={AboutUsPage} />
           <Route path='/inquery' Component={InqueryPage} />
           <Route path='/strata' Component={SummarizeStrataPage} />
