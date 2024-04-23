@@ -27,7 +27,11 @@ function PropertyPage() {
     // console.log('mls received from FE: ', mlsNumber)
     const [property, setProperty] = useState('')
     const [loading, setLoading] = useState(true)
+
+    //For AI Section
+    const [aiLoading, setAiLoading] = useState(false)
     const [question, setQuestion] = useState('')
+    const [answer, setAnswer] = useState('')
 
     const [show, setShow] = useState(false)
     const [show2, setShow2] = useState(false)
@@ -50,9 +54,12 @@ function PropertyPage() {
     }, [])
 
     const clickAIHandler = async () => {
+        setAiLoading(true)
         await axios.post('/ai/askQuestions', { question, property })
             .then(res => {
                 console.log(res.data)
+                setAiLoading(false)
+                setAnswer(res.data.answer)
             })
             .catch(error => {
                 console.log(error)
@@ -142,23 +149,32 @@ function PropertyPage() {
                     </Offcanvas.Header>
 
                     <Offcanvas.Body style={{ textAlign: 'center' }}>
-                        I can answer your questions about this property
+                        <h2>I'm here for answering your questions</h2>
+                        <Form className='d-flex justify-content-center'>
+                            <InputGroup style={{
+                                border: 'solid black 2px', borderTopLeftRadius: '20px',
+                                borderBottomLeftRadius: '20px', marginBottom: '20px', marginLeft: '10px'
+                            }}>
+                                <Form.Control
+                                    as="textarea"
+                                    aria-label="With textarea"
+                                    style={{ background: 'white', borderRadius: '20px', maxHeight: '4rem' }}
+                                    value={question}
+                                    onChange={(e) => { setQuestion(e.target.value) }} />
+                            </InputGroup>
+                            <Button variant='dark' style={{ marginBottom: '20px', marginRight: '10px' }} onClick={clickAIHandler}>Submit</Button>
+                        </Form>
+
+                        {aiLoading ?
+                            <Spinner animation="border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner> :
+                            answer ? <p>{answer}</p> : ''}
                     </Offcanvas.Body>
 
-                    <Form className='d-flex justify-content-center'>
-                        <InputGroup style={{
-                            border: 'solid black 2px', borderTopLeftRadius: '20px',
-                            borderBottomLeftRadius: '20px', marginBottom: '20px', marginLeft: '10px'
-                        }}>
-                            <Form.Control
-                                as="textarea"
-                                aria-label="With textarea"
-                                style={{ background: 'white', borderRadius: '20px', maxHeight: '4rem' }}
-                                value={question}
-                                onChange={(e) => { setQuestion(e.target.value) }} />
-                        </InputGroup>
-                        <Button variant='dark' style={{ marginBottom: '20px', marginRight: '10px' }} onClick={clickAIHandler}>Submit</Button>
-                    </Form>
+
+
+
                 </Offcanvas>
             </Container >
         </>

@@ -3,8 +3,13 @@ import { PromptTemplate } from "@langchain/core/prompts"
 import { LLMChain } from 'langchain/chains'
 import { ChatOpenAI } from '@langchain/openai'
 import { ChatPromptTemplate } from '@langchain/core/prompts'
+import { JSONLoader } from 'langchain/document_loaders/fs/json'
 import { createStuffDocumentsChain } from 'langchain/chains/combine_documents'
-
+import { Document } from "langchain/document";
+import { OpenAIEmbeddings } from '@langchain/openai'
+import { createRetrievalChain } from "langchain/chains/retrieval";
+import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
+import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 
 import isUrl from 'is-url'
 import axios from 'axios'
@@ -83,6 +88,87 @@ const talk = async (req, res) => {
 }
 
 const anwserQuestions = async (req, res) => {
+
+    const question = req.body.question
+    const contexts = req.body.property
+
+    // console.log('req.body: ', req.body)
+    // console.log('req.body.questions: ', question)
+    //console.log('req.body.context: ', contexts)
+
+    const model = new ChatOpenAI({
+        model: 'gpt-3.5-turbo',
+        openAIApiKey: process.env.OPENAI_KEY,
+        temperature: 0.3,
+    })
+
+    const prompt = ChatPromptTemplate.fromTemplate(`
+        In the context is all the information for one specific real estate property in the form on JSON. Answer the user's question about this real estate property. If user ask questions that is not related to real estate, please do not answer.
+        Context: {context}
+        Question: {input}
+    `)
+
+    const chain = await createStuffDocumentsChain({
+        llm: model,
+        prompt
+    })
+
+
+    /**const loader = new JSONLoader({ contexts })
+     * doesn't work as it only accepts a url or a path to file
+     * 
+     * Python version langchain has json splitter
+    */
+
+    /**
+     * Stack Overflow suggestion. Break JSON manually into a array.
+     * This could work, but considering the length of repliers JSON. 
+     * This is gonna be too labor intensive.
+     * const docs = []
+     * for (const prop of contexts) {
+         const doc = new Document({
+            xxxxxxx
+         })
+         docs.push(doc)
+     }
+     */
+
+    const splitter = new RecursiveCharacterTextSplitter({
+        chunSize: 300,
+        chunkOverlap: 0,
+        seperator: ['}']
+    })
+
+    const splitedDocs = await splitter.splitDocuments([new Document({ pageContent: JSON.stringify(contexts) })])
+    //console.log(splitDocs)
+
+    const embeddings = new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_KEY })
+
+    const vectorstores = await MemoryVectorStore.fromDocuments(
+        splitedDocs,
+        embeddings
+    )
+
+    // Create a retriever from vector store
+    // When we invoke chain, it will go into store to select the most relevant k documents
+    const retriever = vectorstores.asRetriever({ k: 2 });
+
+    const retrievalChain = await createRetrievalChain({
+        combineDocsChain: chain,
+        retriever
+    })
+
+    const response = await retrievalChain.invoke({ input: question })
+
+
+    //const docs = await loader.load()
+    //console.log(docs.length, docs[0], docs[1])
+
+    //Normal chain doesn't work with retriver.
+    //const response = await chain.invoke({ input: question, context: [contexts] })
+
+    //console.log('res got from invoke: ', response)
+    res.json(response)
 
 }
 
