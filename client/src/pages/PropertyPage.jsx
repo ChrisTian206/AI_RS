@@ -108,7 +108,7 @@ function PropertyPage() {
                                 <span className="visually-hidden">Loading...</span>
                             </Spinner> :
                             <div>
-                                <h2>$:{property.listPrice}</h2>
+                                <h2>${property.listPrice}</h2>
                                 <ListGroup className='mt-5'>
                                     <ListGroup.Item>{Object.keys(property.details.bathrooms).length} Baths / {Object.keys(property.rooms).length} Beds</ListGroup.Item>
                                     <ListGroup.Item>Listed on: {property.listDate}</ListGroup.Item>
