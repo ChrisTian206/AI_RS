@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Button, Image } from 'react-bootstrap'
 
 function Intro() {
     return (
-        <Container className='mt-2'>
+        <Container className='my-5'>
             <Row className='text-center'>
                 <h1>Vision</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae architecto velit possimus tempore, vero quaerat consequatur dolore, ullam accusantium maxime nisi unde. Nihil autem dignissimos fugiat alias, exercitationem voluptas quasi?</p>
