@@ -28,5 +28,4 @@
   - body:{string: mlsNumber}
 * Res:
   - Replier's listing information object.
-* Description:
-  - This method is used to provide information about one specific property.
+* Description: This method is used to provide information about one specific property. Our server will sent a request to Repliers *get a single listing* method by inserting the mlsNumber into the url query. Simple as that.
