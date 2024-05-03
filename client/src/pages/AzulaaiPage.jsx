@@ -10,9 +10,19 @@ function AzulaaiPage() {
 
     useEffect(() => {
         const listings = localStorage.getItem('listings')
-        //console.log('getting localStorage: ', JSON.parse(listings))
         if (listings) {
-            setRes(JSON.parse(listings))
+            const listingsObj = JSON.parse(listings)
+            const listingTime = listingsObj.timeStamp
+
+            const liveTime = 20000 // 20s in ms
+            const currentTime = new Date().getTime()
+            console.log("useEffect running")
+            if (currentTime - listingTime >= liveTime) {
+                localStorage.removeItem('listings')
+            } else {
+                console.log("setting the res to listings")
+                setRes(listings)
+            }
         }
     }, [])
 
@@ -26,7 +36,9 @@ function AzulaaiPage() {
                 return res.data
             })
         setRes(data)
-        localStorage.setItem('listings', JSON.stringify(data))
+        const listingsWithTimeStamp = structuredClone(data)
+        listingsWithTimeStamp.timeStamp = new Date().getTime()
+        localStorage.setItem('listings', JSON.stringify(listingsWithTimeStamp))
 
         //rookie mistake!!! console.log a status right after setState won't work!!
         // console.log("response from 8000 says: ", res)
