@@ -95,8 +95,6 @@ const talk = async (req, res) => {
                 .request(options)
                 .then(function (response) {
                     //console.log(response.data)
-                    // const pkg = response.data.summary = summaryRes(response.data)
-                    // res.json(pkg)
                     res.json(response.data)
                 })
                 .catch(function (error) {
@@ -114,26 +112,6 @@ const talk = async (req, res) => {
     funCall()
 }
 
-const summaryRes = async (listings) => {
-    const model = new ChatOpenAI({
-        model: 'gpt-3.5-turbo',
-        openAIApiKey: process.env.OPENAI_KEY,
-        temperature: 0.7
-    })
-
-    const prompt = ChatPromptTemplate.fromTemplate(`
-        Summary the listings from the input
-        Input: {input}
-    `)
-
-    const chain = prompt.pipe(model)
-
-    const res = await chain.invoke({
-        input: listings
-    })
-
-    console.log("In summaryRes: ", res)
-}
 
 const anwserQuestions = async (req, res) => {
 
@@ -220,8 +198,64 @@ const anwserQuestions = async (req, res) => {
 
 }
 
+
+
+import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
+const strataSum = async (req, res) => {
+    const model = new ChatOpenAI({
+        model: 'gpt-3.5-turbo',
+        openAIApiKey: process.env.OPENAI_KEY,
+        temperature: 0.7,
+    })
+
+    const prompt = ChatPromptTemplate.fromTemplate(` 
+    You are a helpful study assistant. The user will ask you to make a comprehensive summary. 
+    Please return your summary in the .md format.
+
+    Your summary does not have to be short. You can use sections, bulletpoints, tables, and etc.
+
+    Context: {context}
+    Input:{input}
+    `)
+
+    const chain = await createStuffDocumentsChain({
+        llm: model,
+        prompt
+    })
+
+    const file = req.file
+    const loader = new PDFLoader(file.path);
+    const docs = await loader.load()
+
+    const splitter = new RecursiveCharacterTextSplitter({
+        chunkSize: 800,
+        chunkOverlap: 20
+    })
+
+    const spliitedDocs = await splitter.splitDocuments(docs)
+
+    const embeddings = new OpenAIEmbeddings({
+        openAIApiKey: process.env.OPENAI_KEY
+    })
+
+    const vectorstores = await MemoryVectorStore.fromDocuments(
+        spliitedDocs,
+        embeddings
+    )
+
+    const retriever = vectorstores.asRetriever({ k: 8 });
+
+    const retrievalChain = await createRetrievalChain({
+        combineDocsChain: chain,
+        retriever
+    })
+    const response = await retrievalChain.invoke({ input: 'can you summarize it for me?' })
+    res.json(response.answer)
+}
+
 export default {
     welcome,
     talk,
     anwserQuestions,
+    strataSum
 }
