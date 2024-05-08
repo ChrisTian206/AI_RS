@@ -209,10 +209,31 @@ const strataSum = async (req, res) => {
     })
 
     const prompt = ChatPromptTemplate.fromTemplate(` 
-    You are a helpful study assistant. The user will ask you to make a comprehensive summary. 
+    You are a helpful realtor assistant. The user will ask you to make a comprehensive summary. 
     Please return your summary in the .md format.
 
+    In your summary, please mention: 
+    • The monthly strata fees payable for the strata lot 
+    • Any amount the current owner owes the strata corporation 
+    • Any agreements under which the owner takes responsibility for expenses relating to alterations of a strata lot or the common property 
+    • Any amount that the owner is obligated to pay in the future for a special levy 
+    • The amount in the contingency reserve fund 
+    • Any budgetary shortfalls anticipated any amendments to the bylaws or resolutions that have been approved but are not yet filed 
+    • Any court proceeding or arbitration in which the strata corporation is a party 
+    • Any judgments or orders against the strata corporation 
+    • Any notices or work orders against the strata corporation that remain outstanding for the particular strata lot or common property 
+    • The number of strata lots that are rented 
+    • The number of strata lots that are rented 
+    • Any other information that may be required by regulation. Create side-by-side point form summary and explanation for the entire document.
+
     Your summary does not have to be short. You can use sections, bulletpoints, tables, and etc.
+    please mention the followings, but not limit to,
+    
+    1. reserved contingency fund.
+    2. Special Levy 
+    3. Strata bylaws  
+    4. engineer report.
+    6. monthly strata fee
 
     Context: {context}
     Input:{input}
